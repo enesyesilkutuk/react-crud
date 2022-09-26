@@ -13,14 +13,18 @@ const EmployeeContextProvider = ({children}) => {
         {id:uuidv4(), name: 'Martin Blank', email: 'martinblank@mail.com', address: 'Via Monte Bianco 34, Turin, Italy', phone: '(480) 631-2097'}]);
 
     const addNewEmployee = (employee) => {
-        setEmployees([...employees, { id: uuidv4(), name: employee.name, email: employee.email, address: employee.address, phone:employee.phone } ])
+        setEmployees([...employees, { id: uuidv4(), name: employee.name, email: employee.email, address: employee.address, phone:employee.phone }])
     }
 
     const deleteEmployee = (id) => {
         setEmployees(employees.filter((employee) => employee.id !== id));
     }
 
-    return <EmployeeContext.Provider value={{employees, addNewEmployee, deleteEmployee}}>{children}</EmployeeContext.Provider>
+    const updateEmployee = (id, updatedEmployee) => {
+        setEmployees(employees.map((employee) => employee.id === id ? updatedEmployee : employee));
+    }
+
+    return <EmployeeContext.Provider value={{employees, addNewEmployee, deleteEmployee, updateEmployee}}>{children}</EmployeeContext.Provider>
     
 }
 

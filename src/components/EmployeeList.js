@@ -40,7 +40,11 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          <Employee employees={employees} handleShow={handleShow} />
+          { employees.map((employee) => (
+            <tr key={employee.id}>
+               <Employee employee={employee} />
+            </tr>
+          ))}
         </tbody>
       </table>
       <Modal show={show} onHide={handleClose}>
