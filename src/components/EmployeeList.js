@@ -40,7 +40,7 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          { employees.map((employee) => (
+          { employees.sort((a,b) => a.name < b.name ? -1 : 1).map((employee) => (
             <tr key={employee.id}>
                <Employee employee={employee} />
             </tr>
