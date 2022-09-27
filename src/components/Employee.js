@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
 import { Button, Modal } from "react-bootstrap";
 import EditForm from "./EditForm";
@@ -9,6 +9,10 @@ const Employee = ({ employee }) => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
+  useEffect(() => {
+    handleClose();
+  }, [employee]);
+  
   return (
     <>
       <td>{employee.name}</td>
