@@ -9,7 +9,7 @@ const EditForm = ({employee}) => {
 
     const id = employee.id;
    
-    const [employeeValues, setEmployeeValues] = useState({ name : employee.name, email : employee.email, address : employee.address, phone : employee.phone });
+    const [employeeValues, setEmployeeValues] = useState({ id : id, name : employee.name, email : employee.email, address : employee.address, phone : employee.phone });
     
     const handleEmployeeValues = (e) => {
         setEmployeeValues({...employeeValues, [e.target.name] : e.target.value})
