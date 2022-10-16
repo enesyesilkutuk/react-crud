@@ -3,7 +3,7 @@ import { EmployeeContext } from '../context/EmployeeContext';
 
 const Pagination = ({pages, setCurrentPage, currentEmployees}) => {
 
-   const { employees } = useContext(EmployeeContext);
+   const { sortedEmployees } = useContext(EmployeeContext);
 
    const numOfPages = [];
    
@@ -20,7 +20,7 @@ const Pagination = ({pages, setCurrentPage, currentEmployees}) => {
 
   return (
     <div className="clearfix">
-    <div className="hint-text">Showing <b>{currentEmployees.length}</b> out of <b>{employees.length}</b> entries</div>
+    <div className="hint-text">Showing <b>{currentEmployees.length}</b> out of <b>{sortedEmployees.length}</b> entries</div>
     <ul className="pagination">
       <li className={`${currentButton === 1 ? "page-item disabled" : "page-item"}`}><a href="#!" className='page-link'
       onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>Previous</a></li>

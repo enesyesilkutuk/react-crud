@@ -6,22 +6,22 @@ import AddForm from "./AddForm";
 import Pagination from "./Pagination";
 
 const EmployeeList = () => {
-  const { employees } = useContext(EmployeeContext);
+  const { sortedEmployees } = useContext(EmployeeContext);
   const [show, setShow] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [employeesPerPage] = useState(3);
+  const [employeesPerPage] = useState(2);
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
   useEffect(() => {
     handleClose();
-  }, [employees]);
+  }, [sortedEmployees]);
 
   const indexOfLastEmployee = employeesPerPage * currentPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-  const totalPagesNum = Math.ceil(employees.length / employeesPerPage);
+  const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+  const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
   
   return (
     <>
@@ -49,7 +49,7 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          { currentEmployees.sort((a,b) => a.name < b.name ? -1 : 1).map((employee) => (
+          { currentEmployees.map((employee) => (
             <tr key={employee.id}>
                <Employee employee={employee} />
             </tr>
