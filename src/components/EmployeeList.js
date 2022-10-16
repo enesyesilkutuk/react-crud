@@ -3,16 +3,25 @@ import { useContext, useEffect, useState } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
 import { Button, Modal } from "react-bootstrap";
 import AddForm from "./AddForm";
+import Pagination from "./Pagination";
 
 const EmployeeList = () => {
   const { employees } = useContext(EmployeeContext);
   const [show, setShow] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [employeesPerPage] = useState(3);
+
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
   useEffect(() => {
     handleClose();
   }, [employees]);
+
+  const indexOfLastEmployee = employeesPerPage * currentPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+  const totalPagesNum = Math.ceil(employees.length / employeesPerPage);
   
   return (
     <>
@@ -40,13 +49,14 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          { employees.sort((a,b) => a.name < b.name ? -1 : 1).map((employee) => (
+          { currentEmployees.sort((a,b) => a.name < b.name ? -1 : 1).map((employee) => (
             <tr key={employee.id}>
                <Employee employee={employee} />
             </tr>
           ))}
         </tbody>
       </table>
+      <Pagination setCurrentPage={setCurrentPage} pages={totalPagesNum} currentEmployees={currentEmployees} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="modal-header" closeButton>
           <Modal.Title>Add New Employee</Modal.Title>
