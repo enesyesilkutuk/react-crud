@@ -1,12 +1,12 @@
 import Employee from "./Employee";
 import { useContext, useEffect, useState } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Alert  } from "react-bootstrap";
 import AddForm from "./AddForm";
 import Pagination from "./Pagination";
 
 const EmployeeList = () => {
-  const { sortedEmployees } = useContext(EmployeeContext);
+  const { sortedEmployees, alert, setAlert } = useContext(EmployeeContext);
   const [show, setShow] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [employeesPerPage] = useState(2);
@@ -38,6 +38,7 @@ const EmployeeList = () => {
           </div>
         </div>
       </div>
+      {alert && <Alert className="text-primary" variant="success" onClose={() => setAlert(false)} dismissible>Employee List Updated Successfully</Alert>}
       <table className="table table-striped table-hover">
         <thead>
           <tr>
