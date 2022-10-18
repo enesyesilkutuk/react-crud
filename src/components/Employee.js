@@ -13,7 +13,7 @@ const Employee = ({ employee }) => {
   useEffect(() => {
     handleClose();
   }, [employee]);
-  
+
   return (
     <>
       <td>{employee.name}</td>

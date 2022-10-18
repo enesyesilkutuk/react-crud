@@ -22,7 +22,7 @@ const Pagination = ({pages, setCurrentPage, currentEmployees}) => {
     <div className="clearfix">
     <div className="hint-text">Showing <b>{currentEmployees.length}</b> out of <b>{sortedEmployees.length}</b> entries</div>
     <ul className="pagination">
-      <li className={`${currentButton === 1 ? "page-item disabled" : "page-item"}`}><a href="#!" className='page-link'
+      <li className={`${currentButton === 1 ? "page-item disabled" : "page-item"} user-select-none`}><a href="#!" className='page-link'
       onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>Previous</a></li>
         {
             numOfPages.map((page, index) => {
@@ -33,7 +33,7 @@ const Pagination = ({pages, setCurrentPage, currentEmployees}) => {
             })
         }
 
-      <li className={`${currentButton === numOfPages.length ? "page-item disabled" : "page-item"}`}><a href="#!"
+      <li className={`${currentButton === numOfPages.length ? "page-item disabled" : "page-item"} user-select-none`}><a href="#!"
       onClick={() => setCurrentButton((prev) => prev === numOfPages.length ? prev : prev + 1)} className='page-link'>Next</a></li>
     </ul>
     </div>
