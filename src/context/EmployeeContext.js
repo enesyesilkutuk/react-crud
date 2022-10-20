@@ -21,7 +21,7 @@ const EmployeeContextProvider = ({children}) => {
     const [addAlert, setAddAlert] = useState(false);
     const [updateAlert, setUpdateAlert] = useState(false);
     const [deleteAlert, setDeleteAlert] = useState(false);
-    
+
     const sortedEmployees = employees.sort((a,b) => a.name < b.name ? -1 : 1);
 
     const addNewEmployee = (employee) => {
@@ -48,7 +48,7 @@ const EmployeeContextProvider = ({children}) => {
         }, 3000);
     }
 
-    return <EmployeeContext.Provider value={{sortedEmployees, addNewEmployee, deleteEmployee, updateEmployee, addAlert, updateAlert, deleteAlert}}>{children}</EmployeeContext.Provider>
+    return <EmployeeContext.Provider value={{sortedEmployees, addNewEmployee, deleteEmployee, updateEmployee, addAlert, setAddAlert, updateAlert, setUpdateAlert, deleteAlert, setDeleteAlert}}>{children}</EmployeeContext.Provider>
     
 }
 
