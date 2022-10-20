@@ -38,9 +38,9 @@ const EmployeeList = () => {
           </div>
         </div>
       </div>
-      {addAlert && <Alert className="text-dark" variant="success" onClose={() => setAddAlert(false)} dismissible>Employee List Was Added A New Employee Successfully</Alert>}
+      {addAlert && <Alert className="text-primary" variant="success" onClose={() => setAddAlert(false)} dismissible>Employee List Was Added A New Employee Successfully</Alert>}
       {updateAlert && <Alert className="text-dark" variant="info" onClose={() => setUpdateAlert(false)} dismissible>Employee List Was Updated Successfully</Alert>}
-      {deleteAlert && <Alert className="text-dark text-center" variant="danger" onClose={() => setDeleteAlert(false)} dismissible>Employee Was A Deleted From Employee List Successfully</Alert>}
+      {deleteAlert && <Alert className="text-dark" variant="danger" onClose={() => setDeleteAlert(false)} dismissible>Employee Was A Deleted From Employee List Successfully</Alert>}
       <table className="table table-striped table-hover">
         <thead>
           <tr>
