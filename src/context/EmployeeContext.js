@@ -18,34 +18,38 @@ const EmployeeContextProvider = ({children}) => {
         localStorage.setItem("employees", JSON.stringify(employees));
     }, [employees]);
     
-    const [alert, setAlert] = useState(false);
+    const [addAlert, setAddAlert] = useState(false);
+    const [updateAlert, setUpdateAlert] = useState(false);
+    const [deleteAlert, setDeleteAlert] = useState(false);
+
+    const changeAlertStatus = (status) => !status;
     const sortedEmployees = employees.sort((a,b) => a.name < b.name ? -1 : 1);
 
     const addNewEmployee = (employee) => {
         setEmployees([...employees, { id: uuidv4(), name: employee.name, email: employee.email, address: employee.address, phone:employee.phone }]);
-        setAlert(true);
+        setAddAlert(true);
         setTimeout(() => {
-            setAlert(false);
+            setAddAlert(false);
         }, 3000);
     };
 
     const deleteEmployee = (id) => {
         setEmployees(employees.filter((employee) => employee.id !== id));
-        setAlert(true);
+        setDeleteAlert(true);
         setTimeout(() => {
-            setAlert(false);
+            setDeleteAlert(false);
         }, 3000);
     }
 
     const updateEmployee = (id, updatedEmployee) => {
         setEmployees(employees.map((employee) => employee.id === id ? updatedEmployee : employee));
-        setAlert(true);
+        setUpdateAlert(true);
         setTimeout(() => {
-            setAlert(false);
+            setUpdateAlert(false);
         }, 3000);
     }
 
-    return <EmployeeContext.Provider value={{sortedEmployees, addNewEmployee, deleteEmployee, updateEmployee, alert, setAlert}}>{children}</EmployeeContext.Provider>
+    return <EmployeeContext.Provider value={{sortedEmployees, addNewEmployee, deleteEmployee, updateEmployee, addAlert, updateAlert, deleteAlert, changeAlertStatus}}>{children}</EmployeeContext.Provider>
     
 }
 

@@ -6,7 +6,7 @@ import AddForm from "./AddForm";
 import Pagination from "./Pagination";
 
 const EmployeeList = () => {
-  const { sortedEmployees, alert, setAlert } = useContext(EmployeeContext);
+  const { sortedEmployees, addAlert, setAddAlert, updateAlert, setUpdateAlert, deleteAlert, setDeleteAlert } = useContext(EmployeeContext);
   const [show, setShow] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [employeesPerPage] = useState(2);
@@ -38,7 +38,9 @@ const EmployeeList = () => {
           </div>
         </div>
       </div>
-      {alert && <Alert className="text-primary" variant="success" onClose={() => setAlert(false)} dismissible>Employee List Updated Successfully</Alert>}
+      {addAlert && <Alert className="text-dark" variant="success" onClose={() => setAddAlert(false)} dismissible>Employee List Was Added A New Employee Successfully</Alert>}
+      {updateAlert && <Alert className="text-dark" variant="info" onClose={() => setUpdateAlert(false)} dismissible>Employee List Was Updated Successfully</Alert>}
+      {deleteAlert && <Alert className="text-dark text-center" variant="danger" onClose={() => setDeleteAlert(false)} dismissible>Employee Was A Deleted From Employee List Successfully</Alert>}
       <table className="table table-striped table-hover">
         <thead>
           <tr>
